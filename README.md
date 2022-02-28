@@ -21,10 +21,24 @@ Select the virtual environment that you just created:
 ```
 .\venv\Scripts\activate
 ```
-Install [Flask](https://flask.palletsprojects.com/en/2.0.x/installation/) dependencies:
+Install all dependencies:
 ```
-pip install flask
+pip install -r requirements.txt
 ```
+Install the solidity compiler:
+```
+solc-select install 0.6.10
+```
+Check if the solidity compiler is properly installed:
+```
+solc-select versions
+```
+To select the correct solidity compiler:
+```
+solc-select use 0.6.10
+```
+
+
 
 
 # 3. Run Web Application
