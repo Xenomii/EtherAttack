@@ -18,10 +18,12 @@ def upload_file(req_path):
         if request.files:
             file = request.files["file"]
 
-            file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
+            filetype = file.filename.split('.')[-1]
 
-            print("File saved")
-
+            if filetype == 'sol':
+                file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
+                print("File saved")
+            
             return redirect(request.url)
     else:
         BASE_DIR = 'uploaded_files'
