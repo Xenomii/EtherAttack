@@ -1,5 +1,6 @@
 from flask import Flask, abort, render_template, send_file
 from flask import request, redirect
+from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)
@@ -21,7 +22,9 @@ def upload_file(req_path):
             filetype = file.filename.split('.')[-1]
 
             if filetype == 'sol':
-                file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
+                filename = secure_filename(file.filename)
+                print(filename)
+                file.save(os.path.join(app.config["FILE_UPLOADS"], filename))
                 print("File saved")
             
             return redirect(request.url)
@@ -46,4 +49,4 @@ def upload_file(req_path):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
