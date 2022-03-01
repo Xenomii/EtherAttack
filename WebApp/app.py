@@ -2,6 +2,7 @@ from flask import Flask, abort, render_template, send_file
 from flask import request, redirect
 from werkzeug.utils import secure_filename
 import os
+import analyse
 
 app = Flask(__name__)
 app.config["FILE_UPLOADS"] = "uploaded_files"
@@ -24,8 +25,9 @@ def upload_file(req_path):
             if filetype == 'sol':
                 filename = secure_filename(file.filename)
                 print(filename)
-                file.save(os.path.join(app.config["FILE_UPLOADS"], filename))
+                file.save(os.path.join(app.config["FILE_UPLOADS"], "temp_contract_file.sol"))
                 print("File saved")
+                result = analyse.analysecontract(filename)
             
             return redirect(request.url)
     else:
