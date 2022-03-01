@@ -1,3 +1,4 @@
 flask
 solc-select
 slither-analyzer
+evm-cfg-builder
