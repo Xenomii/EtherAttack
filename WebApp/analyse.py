@@ -11,4 +11,3 @@ def analysecontract(filename):
         print(error)
     subprocess.run(["./SlitherScanner.sh"])
     return 0
-    return 0
