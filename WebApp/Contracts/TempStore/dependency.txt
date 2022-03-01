@@ -1,0 +1,30 @@
+
+Contract EtherStore
++----------+--------------------------------------+
+| Variable |             Dependencies             |
++----------+--------------------------------------+
+| balances | ['msg.value', 'balances', '_amount'] |
++----------+--------------------------------------+
+
+Function deposit()
++---------------------+---------------------------+
+|       Variable      |        Dependencies       |
++---------------------+---------------------------+
+| EtherStore.balances | ['msg.value', 'balances'] |
++---------------------+---------------------------+
+Function withdraw(uint256)
++---------------------+--------------------------------------+
+|       Variable      |             Dependencies             |
++---------------------+--------------------------------------+
+|       _amount       |                  []                  |
+|         sent        | ['msg.sender', '_amount', 'TUPLE_0'] |
+| EtherStore.balances |       ['balances', '_amount']        |
++---------------------+--------------------------------------+
+Function getBalance()
++---------------------+--------------+
+|       Variable      | Dependencies |
++---------------------+--------------+
+|                     |      []      |
+| EtherStore.balances |      []      |
++---------------------+--------------+
+uploaded_files/temp_contract_file.sol analyzed (1 contracts)
