@@ -2,3 +2,7 @@
 body {
   min-height: 75rem;
 }
+
+.flashes {
+  color: red;
+}

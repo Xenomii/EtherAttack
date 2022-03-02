@@ -1,4 +1,4 @@
-from flask import Flask, abort, render_template, send_file
+from flask import Flask, abort, render_template, send_file, flash
 from flask import request, redirect
 from werkzeug.utils import secure_filename
 import os
@@ -28,6 +28,11 @@ def upload_file(req_path):
                 file.save(os.path.join(app.config["FILE_UPLOADS"], "temp_contract_file.sol"))
                 print("File saved")
                 result = analyse.analysecontract(filename)
+            else:
+                if file.filename == "":
+                    flash("No file selected!")
+                else:
+                    flash("Only sol files are accepted!")
             
             return redirect(request.url)
     else:
@@ -51,4 +56,5 @@ def upload_file(req_path):
 
 
 if __name__ == '__main__':
+    app.secret_key = b'_5#y2L"F4Z8z\n\xec]/'
     app.run(debug=True)
