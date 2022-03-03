@@ -27,7 +27,7 @@ def upload_file(req_path):
                 print(filename)
                 file.save(os.path.join(app.config["FILE_UPLOADS"], "temp_contract_file.sol"))
                 print("File saved")
-                result = analyse.analysecontract(filename)
+                analyse.analyse(filename)
             else:
                 if file.filename == "":
                     flash("No file selected!")

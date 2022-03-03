@@ -3,21 +3,21 @@ Contract EtherStore
 +----------+--------------------------------------+
 | Variable |             Dependencies             |
 +----------+--------------------------------------+
-| balances | ['msg.value', 'balances', '_amount'] |
+| balances | ['balances', '_amount', 'msg.value'] |
 +----------+--------------------------------------+
 
 Function deposit()
 +---------------------+---------------------------+
 |       Variable      |        Dependencies       |
 +---------------------+---------------------------+
-| EtherStore.balances | ['msg.value', 'balances'] |
+| EtherStore.balances | ['balances', 'msg.value'] |
 +---------------------+---------------------------+
 Function withdraw(uint256)
 +---------------------+--------------------------------------+
 |       Variable      |             Dependencies             |
 +---------------------+--------------------------------------+
 |       _amount       |                  []                  |
-|         sent        | ['msg.sender', '_amount', 'TUPLE_0'] |
+|         sent        | ['TUPLE_0', '_amount', 'msg.sender'] |
 | EtherStore.balances |       ['balances', '_amount']        |
 +---------------------+--------------------------------------+
 Function getBalance()

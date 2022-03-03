@@ -8,7 +8,7 @@ Inheritance:: []
 +-------------------+------------+-----------+----------------------------+--------------+-------------------------------------------+---------------------------------------+
 |     deposit()     |   public   |     []    | ['balances', 'msg.sender'] | ['balances'] |                     []                    |                   []                  |
 |                   |            |           |       ['msg.value']        |              |                                           |                                       |
-| withdraw(uint256) |   public   |     []    | ['balances', 'msg.sender'] | ['balances'] | ['require(bool,string)', 'require(bool)'] | ['msg.sender.call{value: _amount}()'] |
+| withdraw(uint256) |   public   |     []    | ['balances', 'msg.sender'] | ['balances'] | ['require(bool)', 'require(bool,string)'] | ['msg.sender.call{value: _amount}()'] |
 |    getBalance()   |   public   |     []    |          ['this']          |      []      |            ['balance(address)']           |                   []                  |
 +-------------------+------------+-----------+----------------------------+--------------+-------------------------------------------+---------------------------------------+
 
