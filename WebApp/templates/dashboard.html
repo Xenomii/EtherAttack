@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <h1>Contracts</h1>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Submitted on:</th>
+      <th scope="col">Main Source File</th>
+      <th scope="col">Vulnerabilities:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>22/2/2022</td>
+      <td>Faker.sol</td>
+      <td>Test</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>22/2/2022</td>
+      <td>Faker.sol</td>
+        <td>Test</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>22/2/2022</td>
+      <td>Faker.sol</td>
+      <td>Test</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+<button href="#">Analyse</button>
+</div>
+
+<div class="form-group shadow-textarea">
+  <label for="exampleFormControlTextarea6">Analysis Output:</label>
+  <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Select a file to analyse"></textarea>
+</div>
+{% endblock %}
