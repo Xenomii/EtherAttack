@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block title %}Upload{% endblock %}{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Upload a file</h1>
+            <hr>
+            <form action="/upload-file" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select file</label>
+                    <div class="custom-file">
+                        <input id="fileUpload" type="file" class="custom-file-input" name="file" id="file">
+                        <label class="custom-file-label" for="file">Select file...</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                        {% for message in messages %}
+                            <p class="flashes">{{ message }}</p>
+                        {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <h3>Uploaded Files</h3>
+            <ul>
+                {% for file in files %}
+                <li>
+                    <a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">
+                        {{ (request.path + '/' if request.path != '/' else '') + file }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $('#fileUpload').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $(e.target).parent('div').find('.custom-file-label').html(fileName)
+            // Inside find search element where the name should display (by Id Or Class)
+    });
+</script>
+{% endblock %}
