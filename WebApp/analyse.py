@@ -77,21 +77,20 @@ def createReentrancyAttackContract(filename):
     replacement(filename, "*ContractName*", AttackDict["ContractName"])
     replacement(filename, "*depositMethod*", AttackDict["Deposit"])
     replacement(filename, "*withdrawMethod*", AttackDict["Withdraw"])
-    replacement(filename, "*ContractObj*", "attackStore")
 
 
 def replacement(filename, previousword, nextword):
     # opening the file in read mode
     file = open(f"Contracts/{filename[0]}/attack_{filename[0]}.sol", "r")
-    replacement = ""
-    # using the for loop
+    content = ""
+    # Replace attack template with variables from victim contract
     for line in file:
         line = line.strip()
         changes = line.replace(previousword, nextword)
-        replacement = replacement + changes + "\n"
+        content = content + changes + "\n"
 
     file.close()
     # opening the file in write mode
     fileout = open(f"Contracts/{filename[0]}/attack_{filename[0]}.sol", "w")
-    fileout.write(replacement)
+    fileout.write(content)
     fileout.close()
