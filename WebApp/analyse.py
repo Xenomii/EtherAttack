@@ -40,7 +40,7 @@ def moveFiles(filename):
             shutil.move(f"uploaded_files/temp_contract_file.sol",
                         f"Contracts/{filename[0]}/{OutputList[i]}_{filename[0]}.sol")
             continue
-        shutil.move(f"Contracts/TempStore/{OutputList[i]}.txt",
+        shutil.move(f"TempStore/{OutputList[i]}.txt",
                     f"Contracts/{filename[0]}/{OutputList[i]}_{filename[0]}.txt")
 
 

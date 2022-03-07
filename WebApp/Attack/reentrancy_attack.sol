@@ -2,7 +2,7 @@
 *Version*
 contract Attack {
     *ContractName* public attackStore;
-    constructor(address etherStoreAddress) public {
+    constructor(address _etherStoreAddress) public {
         attackStore = *ContractName*(_etherStoreAddress);
     }
     fallback() external payable {
