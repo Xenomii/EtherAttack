@@ -5,15 +5,11 @@ import os
 import analyse
 
 app = Flask(__name__)
-app.config["FILE_UPLOADS"] = "uploaded_files"
-
+app.config["FILE_UPLOADS"] = "TempStore"
 @app.route('/')
-def index():
+def hello_world():  # put application's code here
     return render_template("index.html")
 
-@app.route('/dashboard')
-def dashboard():
-    return render_template("dashboard.html")
 
 @app.route("/upload-file", methods=["GET", "POST"], defaults={'req_path': ''})
 @app.route("/upload-file/<path:req_path>")
@@ -22,7 +18,6 @@ def upload_file(req_path):
     if request.method == "POST":
         if request.files:
             file = request.files["file"]
-
             filetype = file.filename.split('.')[-1]
 
             if filetype == 'sol':
@@ -37,6 +32,11 @@ def upload_file(req_path):
                 else:
                     flash("Only sol files are accepted!")
             
+
+            file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
+
+            print("File saved")
+
             return redirect(request.url)
     else:
         BASE_DIR = 'TempStore'

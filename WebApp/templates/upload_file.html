@@ -17,13 +17,6 @@
 
                 <button type="submit" class="btn btn-primary">Upload</button>
             </form>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                        {% for message in messages %}
-                            <p class="flashes">{{ message }}</p>
-                        {% endfor %}
-                {% endif %}
-            {% endwith %}
             <br>
             <h3>Uploaded Files</h3>
             <ul>
