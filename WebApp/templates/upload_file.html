@@ -19,10 +19,11 @@
             </form>
             <br>
             <h3>Uploaded Files</h3>
+            <p>Select one to analyse</p>
             <ul>
                 {% for file in files %}
                 <li>
-                    <a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">
+                    <a href="content.html/{{file }}">
                         {{ (request.path + '/' if request.path != '/' else '') + file }}
                     </a>
                 </li>

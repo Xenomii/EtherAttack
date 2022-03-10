@@ -58,6 +58,14 @@ def upload_file(req_path):
     return render_template("upload_file.html", files=files)
 
 
+@app.route('/content.html/<filename>') 
+def content(filename): 
+    with open('TempStore/'+filename, 'r') as f: 
+        return render_template('content.html', text=f.read()) 
+
+
+
+
 if __name__ == '__main__':
     app.secret_key = b'_5#y2L"F4Z8z\n\xec]/'
     app.run(debug=True)
