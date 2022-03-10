@@ -41,9 +41,9 @@ def upload_file(req_path):
         files = os.listdir(abs_path)
 
     return render_template("upload_file.html", files=files)
-@app.route('/content.html') 
-def content(): 
-	with open('uploaded_files/A.txt', 'r') as f: 
+@app.route('/content.html/<filename>') 
+def content(filename): 
+	with open('uploaded_files/'+filename, 'r') as f: 
 		return render_template('content.html', text=f.read()) 
 
 if __name__ == '__main__':

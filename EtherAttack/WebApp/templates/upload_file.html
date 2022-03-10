@@ -22,12 +22,17 @@
             <ul>
                 {% for file in files %}
                 <li>
-                    <a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">
+                    <a href="content.html/{{file }}">
                         {{ (request.path + '/' if request.path != '/' else '') + file }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
+        </div>
+        <div>
+            <pre> 
+    {{ text }} 
+    </pre> 
         </div>
     </div>
 </div>
@@ -37,5 +42,6 @@
         $(e.target).parent('div').find('.custom-file-label').html(fileName)
             // Inside find search element where the name should display (by Id Or Class)
     });
+
 </script>
 {% endblock %}
