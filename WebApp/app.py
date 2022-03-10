@@ -39,7 +39,7 @@ def upload_file(req_path):
             
             return redirect(request.url)
     else:
-        BASE_DIR = 'uploaded_files'
+        BASE_DIR = 'TempStore'
 
         # Joining the base and the requested path
         abs_path = os.path.join(BASE_DIR, req_path)
