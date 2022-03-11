@@ -67,7 +67,9 @@ def upload_file(req_path):
 
 @app.route('/content.html/<filename>') 
 def content(filename): 
-    with open('TempStore/'+filename, 'r') as f: 
+    size = len(filename)
+    with open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
+    , 'r') as f: 
         return render_template('content.html', text=f.read()) 
 
 

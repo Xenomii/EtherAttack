@@ -1,73 +1,26 @@
-{% extends "base.html" %}
-
-
-{% block content %}
-  <style>
-    body {
-      font-family: Arial;
-      color:black;
-    }
-    
-    .split {
-      height: 100%;
-      width: 50%;
-      position: fixed;
-      z-index: 1;
-      top: 30px;
-      overflow-x: hidden;
-      padding-top: 20px;
-    }
-    
-    .left {
-      left: 0;
-      background-color:#f3edf7;
-    }
-    
-    .right {
-      right: 0;
-      background-color: #dcedf5;
-    }
-    
-    .centered {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-    
-    .centered img {
-      width: 150px;
-      border-radius: 50%;
-    }
-    </style>
-
-
-<div class="split left">
-  <div class="centered">
-    <div class="container">
-        <pre> 
-            {{ text }} 
-            </pre> 
-    </div>
-
-    <h2>Original File</h2>
-   
+{% extends "base.html" %} {% block content %}
+<link rel="stylesheet" href="../static/css/content.css">
+<div class="row" style="text-align:center;">
+  <div class ="col-lg-6">
+    <h1>Original Files</h1>
   </div>
+  <div class ="col-lg-6">
+    <h1>Analysed Files</h1>
+  </div>
+
+</div>
+<textarea class="textBox" id="sec1" disabled> {{ text }} </textarea>
+<textarea class="textBox" id="sec2" disabled> {{ text }} </textarea>
+<div class="row" style="text-align:center;">
+  <div class ="col-lg-6">
+    <h1>Original Files</h1>
+  </div>
+  <div class ="col-lg-6">
+    <h1>Analyse Files</h1>
+  </div>
+
 </div>
 
-<div class="split right">
-  <div class="centered">
-    <div class="container">
-        <pre> 
-            {{ text }} 
-            </pre> 
-    </div>
-    <h2>Compared File</h2>
-   
-  </div>
-</div>
-     
-</body>
-{% endblock %}
 
+<textarea class="textBox" id="sec3" disabled> {{ text }} </textarea>
+<textarea class="textBox" id="sec4" disabled> {{ text }} </textarea> {% endblock %}
