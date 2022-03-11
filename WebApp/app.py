@@ -7,9 +7,12 @@ import analyse
 app = Flask(__name__)
 app.config["FILE_UPLOADS"] = "TempStore"
 @app.route('/')
-def hello_world():  # put application's code here
+def index():
     return render_template("index.html")
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template("dashboard.html")
 
 @app.route("/upload-file", methods=["GET", "POST"], defaults={'req_path': ''})
 @app.route("/upload-file/<path:req_path>")
