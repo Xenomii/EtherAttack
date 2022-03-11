@@ -26,16 +26,20 @@ def upload_file(req_path):
                 file.save(os.path.join(app.config["FILE_UPLOADS"], "temp_contract_file.sol"))
                 print("File saved")
                 analyse.analyse(filename)
-            else:
-                if file.filename == "":
+            elif file.filename == "":
+    
                     flash("No file selected!")
-                else:
+            elif filetype != 'sol':
+    
+                    flash("No file selected!")
+            else:
                     flash("Only sol files are accepted!")
+                  
             
 
             file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
 
-            print("File saved")
+            flash("File saved")
 
             return redirect(request.url)
     else:
