@@ -1,4 +1,9 @@
-{% extends "base.html" %} {% block title %}Upload{% endblock %}{% block content %}
+{% extends "base.html" %}
+ {% block title %}Upload
+ {% endblock %}
+ {% block content %}
+
+<body style="background-color:#dcedf5;" >
 
 
 <div class="container">
@@ -27,7 +32,7 @@
                         {{ (request.path + '/' if request.path != '/' else '') + file }}
                     </a>
                 </li>
-                {% endfor %}
+                {% endfor %} 
             </ul>
         </div>
     </div>
@@ -39,4 +44,6 @@
             // Inside find search element where the name should display (by Id Or Class)
     });
 </script>
+
+</body>
 {% endblock %}

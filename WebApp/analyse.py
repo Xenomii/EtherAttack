@@ -37,7 +37,7 @@ def analyse(filename):
 def moveFiles(filename):
     for i in range(len(OutputList)):
         if i == 0:
-            shutil.move(f"uploaded_files/temp_contract_file.sol",
+            shutil.move(f"TempStore/temp_contract_file.sol",
                         f"Contracts/{filename[0]}/{OutputList[i]}_{filename[0]}.sol")
             continue
         shutil.move(f"TempStore/{OutputList[i]}.txt",
