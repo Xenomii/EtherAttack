@@ -68,11 +68,17 @@ def upload_file(req_path):
 @app.route('/content.html/<filename>') 
 def content(filename): 
     size = len(filename)
-    with open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
-    , 'r') as f: 
-        return render_template('content.html', text=f.read()) 
+    c=open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
+    , 'r')
+    d=open(f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
+    , 'r') 
+    a=open(f"Contracts/{filename[:size - 4]}/analysis_{filename[:size - 4]}.txt"
+    , 'r') 
+    s=open(f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
+    , 'r') 
+    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read()) 
 
-
+  
 
 
 if __name__ == '__main__':
