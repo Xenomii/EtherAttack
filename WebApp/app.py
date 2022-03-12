@@ -30,19 +30,9 @@ def upload_file(req_path):
                 print("File saved")
                 analyse.analyse(filename)
             elif file.filename == "":
-    
-                    flash("No file selected!")
-            elif filetype != 'sol':
-    
-                    flash("No file selected!")
+                flash("No file selected!")
             else:
-                    flash("Only sol files are accepted!")
-                  
-            
-
-            file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
-
-            flash("File saved")
+                flash("Only sol files are accepted!")
 
             return redirect(request.url)
     else:
