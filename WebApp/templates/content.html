@@ -3,6 +3,7 @@
 <div class="row" style="text-align:center;">
   <div class ="col-lg-6">
     <h1>Original Files</h1>
+    <a href={{original}}>Download</a>
   </div>
   <div class ="col-lg-6">
     <h1>Analysed Files</h1>
@@ -23,4 +24,12 @@
 
 
 <textarea class="textBox" id="sec3" disabled> {{ dependency}} </textarea>
-<textarea class="textBox" id="sec4" disabled> {{summary1 }} </textarea> {% endblock %}
+<textarea class="textBox" id="sec4" disabled> {{summary1 }} </textarea> 
+
+
+    <h1>Function Summary</h1>
+
+
+  <textarea class="textBox" id="sec5" disabled> {{ function}} </textarea>
+
+{% endblock %}

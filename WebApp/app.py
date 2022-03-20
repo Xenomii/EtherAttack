@@ -76,7 +76,9 @@ def content(filename):
     , 'r') 
     s=open(f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
     , 'r') 
-    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read()) 
+    f=open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
+    , 'r') 
+    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read()) 
 
   
 
