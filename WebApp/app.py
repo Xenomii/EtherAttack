@@ -80,8 +80,18 @@ def content(filename):
     , 'r') 
     return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read()) 
 
-  
 
+@app.route('/Download.html')
+def download_file():
+   
+	#path = "html2pdf.pdf"
+	#path = "info.xlsx"
+	path1 = "Contracts/Ph/analysis_Ph.txt"
+	#path = "sample.txt"
+	return send_file(path1, as_attachment=True)
+
+
+   
 
 if __name__ == '__main__':
     app.secret_key = b'_5#y2L"F4Z8z\n\xec]/'
