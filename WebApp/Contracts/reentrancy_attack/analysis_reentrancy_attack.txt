@@ -1,0 +1,1 @@
+./SlitherScanner.sh: line 6: slither: command not found

@@ -2,10 +2,14 @@
 <link rel="stylesheet" href="../static/css/content.css">
 <div class="row" style="text-align:center;">
   <div class ="col-lg-6">
-    <h1>Original Files</h1>
+    <h1>Original File</h1>
+   
+    </a>
   </div>
   <div class ="col-lg-6">
     <h1>Analysed Files</h1>
+    {% set url = "?type=analysis&filename=" + filename %}
+    <a href="/download{{ url }}">Download</a>
   </div>
 
 </div>
@@ -14,13 +18,28 @@
 <div class="row" style="text-align:center;">
   <div class ="col-lg-6">
     <h1>Dependency</h1>
+    {% set url = "?type=dependency&filename=" + filename %}
+    <a href="/download{{ url }}">Download</a>
   </div>
   <div class ="col-lg-6">
     <h1>Summary</h1>
+    {% set url = "?type=summary&filename=" + filename %}
+    <a href="/download{{ url }}">Download</a>
   </div>
 
 </div>
 
 
 <textarea class="textBox" id="sec3" disabled> {{ dependency}} </textarea>
-<textarea class="textBox" id="sec4" disabled> {{summary1 }} </textarea> {% endblock %}
+<textarea class="textBox" id="sec4" disabled> {{summary1 }} </textarea> 
+
+
+<div class="col-lg-12" style="text-align:center;">
+  <h1>Function Summary</h1>
+  {% set url = "?type=function_summary&filename=" + filename %}
+  <a href="/download{{ url }}">Download</a>
+</div>
+
+  <textarea class="textBox" id="sec5" disabled> {{ function}} </textarea>
+
+{% endblock %}
