@@ -1,11 +1,20 @@
 {% extends "base.html" %} {% block content %}
+
 <link rel="stylesheet" href="../static/css/content.css">
+<body class="w3-container w3-padding-32" id="projects" style="background-color:#dcedf5;" >
+
+
+
 <div class="row" style="text-align:center;">
   <div class ="col-lg-6">
     <h1>Original File</h1>
    
     </a>
   </div>
+
+
+
+  
   <div class ="col-lg-6">
     <h1>Analysed Files</h1>
     {% set url = "?type=analysis&filename=" + filename %}
@@ -40,6 +49,7 @@
   <a href="/download{{ url }}">Download</a>
 </div>
 
-  <textarea class="textBox" id="sec5" disabled> {{ function}} </textarea>
 
+  <textarea class="textBox" id="sec5" disabled> {{ function}} </textarea>
+</div>
 {% endblock %}
