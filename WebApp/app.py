@@ -68,6 +68,7 @@ def upload_file(req_path):
 @app.route('/content.html/<filename>') 
 def content(filename): 
     size = len(filename)
+    print(filename)
     c=open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
     , 'r')
     d=open(f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
@@ -78,17 +79,28 @@ def content(filename):
     , 'r') 
     f=open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
     , 'r') 
-    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read()) 
+    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read(),filename=filename) 
 
 
-@app.route('/Download.html')
-def download_file():
-   
-	#path = "html2pdf.pdf"
-	#path = "info.xlsx"
-	path1 = "Contracts/Ph/analysis_Ph.txt"
-	#path = "sample.txt"
-	return send_file(path1, as_attachment=True)
+@app.route('/download', methods=['GET', 'POST'])
+def download():
+    # Appending app path to upload folder path within app root folder
+    filename = request.args.get('filename')
+    type = request.args.get('type')
+
+    size = len(filename)
+    path = ""
+
+    if (type == "analysis"):
+        path = f"Contracts/{filename[:size - 4]}/analysis_{filename[:size - 4]}.txt"
+    elif (type == "dependency"):
+        path = f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
+    elif (type == "summary"):
+        path = f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
+    else:
+        path = f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
+
+    return send_file(path, as_attachment=True)
 
 
    
