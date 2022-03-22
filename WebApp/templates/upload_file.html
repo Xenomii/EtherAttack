@@ -1,25 +1,19 @@
-{% extends "base.html" %}
- {% block title %}Upload
- {% endblock %}
- {% block content %}
+{% extends "base.html" %} {% block title %}Upload {% endblock %} {% block content %}
 
-<body style="background-color:#dcedf5;" >
+<body style="background-color:#dcedf5;">
 
 
-<div class="container">
-    <div class="row">
+    <div class="w3-container w3-padding-32" id="projects">
+        <div class="row"></div>
         <div class="col">
-            <h1>Upload a file</h1>
-            <hr>
+            <h1 style="background-color:powderblue;font-family: 'Brush Script MT';">Upload a file</h1>
             <form action="/upload-file" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>Select file</label>
+                    <label>Select file...</label>
                     <div class="custom-file">
                         <input id="fileUpload" type="file" class="custom-file-input" name="file" id="file">
-                        <label class="custom-file-label" for="file">Select file...</label>
                     </div>
                 </div>
-
                 <button type="submit" class="btn btn-primary">Upload</button>
             </form>
             <br>
@@ -32,18 +26,18 @@
                         {{ (request.path + '/' if request.path != '/' else '') + file }}
                     </a>
                 </li>
-                {% endfor %} 
+                {% endfor %}
             </ul>
         </div>
     </div>
-</div>
-<script>
-    $('#fileUpload').change(function(e) {
-        var fileName = e.target.files[0].name;
-        $(e.target).parent('div').find('.custom-file-label').html(fileName)
-            // Inside find search element where the name should display (by Id Or Class)
-    });
-</script>
+    </div>
+    <script>
+        $('#fileUpload').change(function(e) {
+            var fileName = e.target.files[0].name;
+            $(e.target).parent('div').find('.custom-file-label').html(fileName)
+                // Inside find search element where the name should display (by Id Or Class)
+        });
+    </script>
 
 </body>
 {% endblock %}

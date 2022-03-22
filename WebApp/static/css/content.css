@@ -10,6 +10,8 @@ body {
     border: solid 1px;
     overflow-y: scroll;
     padding: 50px;
+    resize: none;
+    background-color: white;
 }
 
 #sec3,
@@ -24,15 +26,12 @@ body {
     height: 35%;
 }
 
-
 #sec5 {
-
     width: 50%;
     height: 35%;
-
-  margin-left: 300px;
+    margin-left: 25%;
 }
 
-h1 {
-    text-align:center;
+.w3-container {
+    padding: 0px;
 }

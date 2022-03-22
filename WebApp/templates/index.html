@@ -4,12 +4,14 @@
 
 {% block content %}
 <main class="container">
-    <div class="bg-light p-5 rounded">
-        <h1>Welcome to EtherAttack</h1>
-        <p class="lead">EtherAttack analyse and identify these vulnerabilities and provide an alternative smart contract that exploits identified vulnerabilities.</p>
-        <a class="btn btn-lg btn-primary" href="../components/navbar/" role="button">View navbar docs &raquo;</a>
-        <!-- test button -->
-        <a class="btn btn-lg btn-primary" href="/dashboard" role="button">Dashboard</a>
-    </div>
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+        <img class="w3-image" src="/static/sky.jpeg" alt="Architecture" width="1500" height="800">
+        <div class="w3-display-middle w3-margin-top w3-center">
+          <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>EtherAttack</b></span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
+          <a href="/upload-file">Start Now</a>
+        </div>
+      
+      </header>
+      
 </main>
 {% endblock %}
