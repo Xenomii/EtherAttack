@@ -14,7 +14,7 @@ ReentrancyAttackDict = {
 TxOriginAttackDict = {
     "Version": "",
     "ContractName": "",
-    "victim": "",
+    "Victim": ""
 }
 
 
@@ -88,11 +88,11 @@ def create_txorigin_attack_contract(filename):
             TxOriginAttackDict.update({"ContractName": x[1]})
             continue
         if "address public" in line:
-            x = line.split(" ")
-            print("Got it")
-            TxOriginAttackDict.update({"Victim": x[2]})
+            x = " ".join(line.split())
+            x = x.replace(";", "")
+            x = x.split(" ")
+            TxOriginAttackDict.update({"Victim": x[-1]})
             continue
-    print(TxOriginAttackDict)
 
     # Copy attack template to contract directory
     shutil.copyfile("Attack/Phising_Tx_origin_attack.sol", f"Contracts/{filename[0]}/attack_{filename[0]}.sol")
