@@ -1,3 +1,4 @@
+import glob
 from flask import Flask, abort, render_template, send_file, flash
 from flask import request, redirect
 from werkzeug.utils import secure_filename
@@ -8,6 +9,12 @@ app = Flask(__name__)
 app.config["FILE_UPLOADS"] = "TempStore"
 @app.route('/')
 def index():
+    files = glob.glob('TempStore/*.sol', recursive=True)
+    for f in files:
+        try:
+            os.remove(f)
+        except OSError as e:
+            print('Error %s : %s' % (f, e.strerror))
     return render_template("index.html")
 
 @app.route('/dashboard')
@@ -31,18 +38,9 @@ def upload_file(req_path):
                 print("File saved")
                 analyse.analyse(filename)
             elif file.filename == "":
-    
-                
                     flash("No file selected!")
             else:
                     flash("Only sol files are accepted!")
-                  
-            
-
-           
-
-    
-
             return redirect(request.url)
     else:
         BASE_DIR = 'TempStore'
@@ -60,7 +58,6 @@ def upload_file(req_path):
 
         # Show directory contents
         files = os.listdir(abs_path)
-
     return render_template("upload_file.html", files=files)
 
 

@@ -29,7 +29,6 @@ def analyse(filename):
         print(error)
     subprocess.run(["./SlitherScanner.sh"])
     move_files(filename)
-    os.remove(f"TempStore/{filename[0]}.sol")
     file = open(f"Contracts/{filename[0]}/analysis_{filename[0]}.txt")
     for line in file:
         if "https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities" in line:
