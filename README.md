@@ -7,7 +7,7 @@ However, just like any piece of developed software, it can contain security vuln
 Our tool aims to take it a step further by creating smart contracts that specifically exploit those identified vulnerabilities based on the uploaded smart contract file.
 
 # 2. Target Platform
-This project targets smart contracts built using the [Solidity](https://docs.soliditylang.org/en/v0.8.13/) language for the Ethereum blockchain.
+This project targets smart contracts built using the [Solidity](https://docs.soliditylang.org/en/v0.8.13/) language for the [Ethereum](https://ethereum.org/en/) blockchain.
 
 # 2. Environment Set-Up
 Currently, the project can only be executed on a Linux machine (preferrably Ubuntu 20.04.4 LTS). You will also need [Python](https://www.python.org/) installed on your machine.
