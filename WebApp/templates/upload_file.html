@@ -1,43 +1,57 @@
 {% extends "base.html" %} {% block title %}Upload {% endblock %} {% block content %}
-
 <body style="background-color:#dcedf5;">
 
 
-    <div class="w3-container w3-padding-32" id="projects">
-        <div class="row"></div>
-        <div class="col">
-            <h1 style="background-color:powderblue;font-family: 'Brush Script MT';">Upload a file</h1>
+<link rel="stylesheet" href="../static/css/upload.css">
+<div class="frame">
+	<div class="center">
+		<div class="title">
+			
             <form action="/upload-file" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Select file...</label>
                     <div class="custom-file">
                         <input id="fileUpload" type="file" class="custom-file-input" name="file" id="file">
+                        <button   type="submit" class="btn btn-primary">Upload</button>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Upload</button>
+
             </form>
-            <br>
-            <h3>Uploaded Files</h3>
-            <p>Select one to analyse</p>
+		</div>
+        <div>
+           
+            <p>Select file to analyse</p>
             <ul>
                 {% for file in files %}
                 <li>
                     <a href="content.html/{{file }}">
-                        {{ (request.path + '/' if request.path != '/' else '') + file }}
+                        {{ file }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-        </div>
-    </div>
-    </div>
-    <script>
-        $('#fileUpload').change(function(e) {
-            var fileName = e.target.files[0].name;
-            $(e.target).parent('div').find('.custom-file-label').html(fileName)
-                // Inside find search element where the name should display (by Id Or Class)
-        });
-    </script>
 
+
+        </div>
+       
+	
+
+
+	</div>
+
+
+
+<!-- original pen: https://codepen.io/roydigerhund/pen/ZQdbeN  -->
+
+<!-- NO JS ADDED YET -->
+
+
+<script>
+    $('#fileUpload').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $(e.target).parent('div').find('.custom-file-label').html(fileName)
+            // Inside find search element where the name should display (by Id Or Class)
+    });
+</script>
 </body>
 {% endblock %}
