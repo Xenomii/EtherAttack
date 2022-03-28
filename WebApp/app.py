@@ -75,7 +75,9 @@ def content(filename):
     , 'r') 
     f=open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
     , 'r') 
-    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read(),filename=filename) 
+    attack=open(f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
+    , 'r') 
+    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read(),attack=attack.read(),filename=filename) 
 
 
 @app.route('/download', methods=['GET', 'POST'])
@@ -93,6 +95,8 @@ def download():
         path = f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
     elif (type == "summary"):
         path = f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
+    elif (type == "attack"):
+        path = f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
     else:
         path = f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
 
