@@ -1,5 +1,5 @@
 import glob
-from flask import Flask, abort, render_template, send_file, flash
+from flask import Flask, abort, render_template, send_file, flash, url_for
 from flask import request, redirect
 from werkzeug.utils import secure_filename
 import os
@@ -41,7 +41,7 @@ def upload_file(req_path):
                     flash("No file selected!")
             else:
                     flash("Only sol files are accepted!")
-            return redirect(request.url)
+            return redirect(url_for('content', filename=filename))
     else:
         BASE_DIR = 'TempStore'
 
@@ -65,20 +65,20 @@ def upload_file(req_path):
 def content(filename): 
     size = len(filename)
     print(filename)
-    c=open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
-    , 'r')
-    d=open(f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
-    , 'r') 
-    a=open(f"Contracts/{filename[:size - 4]}/analysis_{filename[:size - 4]}.txt"
-    , 'r') 
-    s=open(f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
-    , 'r') 
-    f=open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
-    , 'r') 
-    attack=open(f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
-    , 'r') 
-    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read(),attack=attack.read(),filename=filename) 
 
+    c=open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
+        , 'r')
+    d=open(f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
+        , 'r')
+    a=open(f"Contracts/{filename[:size - 4]}/analysis_{filename[:size - 4]}.txt"
+        , 'r')
+    s=open(f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
+        , 'r')
+    f=open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
+        , 'r')
+    attack=open(f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
+        , 'r')
+    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read(),attack=attack.read(),filename=filename)
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
