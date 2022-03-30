@@ -25,12 +25,12 @@
 
     <div class="row" style="text-align:center;">
         <div class="col-lg-6">
-            <h1>Analysis Contract</h1>
+            <h1>Slither Static Analysis </h1>
             {% set url = "?type=analysis&filename=" + filename %}
             <a href="/download{{ url }}">Download</a>
         </div>
         <div class="col-lg-6">
-            <h1>Dependency</h1>
+            <h1>Variable Data Dependencies </h1>
             {% set url = "?type=dependency&filename=" + filename %}
             <a href="/download{{ url }}">Download</a>
         </div>
@@ -42,12 +42,12 @@
 
     <div class="row" style="text-align:center;">
         <div class="col-lg-6">
-            <h1>Functional Summary</h1>
+            <h1>Summary of Functions</h1>
             {% set url = "?type=function_summary&filename=" + filename %}
             <a href="/download{{ url }}">Download</a>
         </div>
         <div class="col-lg-6">
-            <h1>Summary</h1>
+            <h1>Contract Summary </h1>
             {% set url = "?type=summary&filename=" + filename %}
             <a href="/download{{ url }}">Download</a>
         </div>
