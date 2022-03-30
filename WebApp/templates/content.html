@@ -8,7 +8,7 @@
             <h1>Original File</h1>
         </div>
         <div class="col-lg-6">
-            <h1>Attack Files</h1>
+            <h1>Attack Contract</h1>
             {% set url = "?type=attack&filename=" + filename %}
             <a href="/download{{ url }}">Download</a>
         </div>
@@ -18,18 +18,20 @@
 
     <div class="row" style="text-align:center;">
         <div class="col-lg-6">
+            <h1>Analysis Contract</h1>
+            {% set url = "?type=analysis&filename=" + filename %}
+            <a href="/download{{ url }}">Download</a>
+        </div>
+        <div class="col-lg-6">
             <h1>Dependency</h1>
             {% set url = "?type=dependency&filename=" + filename %}
             <a href="/download{{ url }}">Download</a>
         </div>
-        <div class="col-lg-6">
-            <h1>Analyse Files</h1>
-            {% set url = "?type=analysis&filename=" + filename %}
-            <a href="/download{{ url }}">Download</a>
-        </div>
+       
     </div>
-    <textarea class="textBox" id="sec3" disabled> {{ dependency}} </textarea>
+   
     <textarea class="textBox" id="sec4" disabled> {{ analysis }} </textarea>
+    <textarea class="textBox" id="sec3" disabled> {{ dependency}} </textarea>
 
     <div class="row" style="text-align:center;">
         <div class="col-lg-6">

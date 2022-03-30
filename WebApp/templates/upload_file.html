@@ -10,7 +10,7 @@
             <form action="/upload-file" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Select file...</label>
-                    <div class="custom-file">
+                    <div class="custom-file" align-items: center;>
                         <input id="fileUpload" type="file" class="custom-file-input" name="file" id="file">
                         <button   type="submit" class="btn btn-primary">Upload</button>
                     </div>
@@ -18,22 +18,7 @@
 
             </form>
 		</div>
-        <div>
-           
-            <p>Select file to analyse</p>
-            <ul>
-                {% for file in files %}
-                <li>
-                    <a href="content.html/{{file }}">
-                        {{ file }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-
-
-        </div>
-       
+      
 	
 
 
