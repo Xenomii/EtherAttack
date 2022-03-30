@@ -19,12 +19,6 @@ def index():
             print('Error %s : %s' % (f, e.strerror))
     return render_template("index.html")
 
-
-@app.route('/dashboard')
-def dashboard():
-    return render_template("dashboard.html")
-
-
 @app.route("/upload-file", methods=["GET", "POST"], defaults={'req_path': ''})
 @app.route("/upload-file/<path:req_path>")
 def upload_file(req_path):
