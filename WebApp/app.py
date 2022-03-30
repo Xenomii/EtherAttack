@@ -29,15 +29,18 @@ def upload_file(req_path):
 
             if filetype == 'sol':
                 filename = secure_filename(file.filename)
-                print(filename)
+
                 file.save(os.path.join(app.config["FILE_UPLOADS"], "temp_contract_file.sol"))
                 file.save(os.path.join(app.config["FILE_UPLOADS"], file.filename))
-                print("File saved")
+
                 analyse.analyse(filename)
+
             elif file.filename == "":
                 flash("No file selected!")
+
             else:
                 flash("Only sol files are accepted!")
+
             return redirect(url_for('content', filename=filename))
     else:
         BASE_DIR = 'TempStore'
@@ -95,7 +98,7 @@ def content(filename):
             continue
 
     return render_template('content.html', original=c.read(), dependency=d.read(), analysis=a.read(),
-                           summary1=s.read(), function=f.read(), attack=status, filename=filename)
+                           summary1=s.read(), function=f.read(), attack=status, filename=filename, abs_path=abs_path)
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
@@ -118,6 +121,10 @@ def download():
         path = f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
 
     return send_file(path, as_attachment=True)
+
+@app.context_processor
+def handle_context():
+    return dict(os=os)
 
 
 if __name__ == '__main__':

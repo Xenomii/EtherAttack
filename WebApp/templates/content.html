@@ -10,11 +10,19 @@
         <div class="col-lg-6">
             <h1>Attack Contract</h1>
             {% set url = "?type=attack&filename=" + filename %}
-            <a href="/download{{ url }}">Download</a>
+
+                {% if filename in os.listdir(abs_path) %}
+                    <a href="/download{{ url }}">Download</a>
+
+                {% else %}
+                    <label></label>
+
+                {% endif %}
         </div>
     </div>
     <textarea class="textBox" id="sec1" disabled> {{ original }} </textarea>
-    <textarea class="textBox" id="sec2" disabled> {{ attack}} </textarea>
+
+    <textarea class="textBox" id="sec2" disabled> {{ attack }} </textarea>
 
     <div class="row" style="text-align:center;">
         <div class="col-lg-6">
@@ -31,7 +39,7 @@
     </div>
    
     <textarea class="textBox" id="sec4" disabled> {{ analysis }} </textarea>
-    <textarea class="textBox" id="sec3" disabled> {{ dependency}} </textarea>
+    <textarea class="textBox" id="sec3" disabled> {{ dependency }} </textarea>
 
     <div class="row" style="text-align:center;">
         <div class="col-lg-6">
@@ -45,6 +53,6 @@
             <a href="/download{{ url }}">Download</a>
         </div>
     </div>
-    <textarea class="textBox" id="sec3" disabled> {{ function}} </textarea>
+    <textarea class="textBox" id="sec3" disabled> {{ function }} </textarea>
     <textarea class="textBox" id="sec4" disabled> {{ summary1 }} </textarea>
     {% endblock %}
