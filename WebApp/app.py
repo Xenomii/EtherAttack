@@ -7,6 +7,8 @@ import analyse
 
 app = Flask(__name__)
 app.config["FILE_UPLOADS"] = "TempStore"
+
+
 @app.route('/')
 def index():
     files = glob.glob('TempStore/*.sol', recursive=True)
@@ -17,14 +19,15 @@ def index():
             print('Error %s : %s' % (f, e.strerror))
     return render_template("index.html")
 
+
 @app.route('/dashboard')
 def dashboard():
     return render_template("dashboard.html")
 
+
 @app.route("/upload-file", methods=["GET", "POST"], defaults={'req_path': ''})
 @app.route("/upload-file/<path:req_path>")
 def upload_file(req_path):
-
     if request.method == "POST":
         if request.files:
             file = request.files["file"]
@@ -38,9 +41,9 @@ def upload_file(req_path):
                 print("File saved")
                 analyse.analyse(filename)
             elif file.filename == "":
-                    flash("No file selected!")
+                flash("No file selected!")
             else:
-                    flash("Only sol files are accepted!")
+                flash("Only sol files are accepted!")
             return redirect(url_for('content', filename=filename))
     else:
         BASE_DIR = 'TempStore'
@@ -60,25 +63,45 @@ def upload_file(req_path):
         files = os.listdir(abs_path)
     return render_template("upload_file.html", files=files)
 
-
-@app.route('/content.html/<filename>') 
-def content(filename): 
+@app.route('/content.html/<filename>')
+def content(filename):
     size = len(filename)
+    CONTRACT_DIR = "Contracts"
+    abs_path = os.path.join(CONTRACT_DIR, filename[:size - 4])
+    status = ""
     print(filename)
 
-    c=open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
-        , 'r')
-    d=open(f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
-        , 'r')
-    a=open(f"Contracts/{filename[:size - 4]}/analysis_{filename[:size - 4]}.txt"
-        , 'r')
-    s=open(f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
-        , 'r')
-    f=open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
-        , 'r')
-    attack=open(f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
-        , 'r')
-    return render_template('content.html', original=c.read(),dependency=d.read(),analysis=a.read(),summary1=s.read(),function=f.read(),attack=attack.read(),filename=filename)
+    c = open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
+             , 'r')
+    d = open(f"Contracts/{filename[:size - 4]}/dependency_{filename[:size - 4]}.txt"
+             , 'r')
+    a = open(f"Contracts/{filename[:size - 4]}/analysis_{filename[:size - 4]}.txt"
+             , 'r')
+    s = open(f"Contracts/{filename[:size - 4]}/summary_{filename[:size - 4]}.txt"
+             , 'r')
+    f = open(f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
+             , 'r')
+
+    for file in os.listdir(abs_path):
+
+        try:
+            attack = open(f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
+                          , 'r')
+            if file.startswith("attack"):
+                status = attack.read()
+                break
+
+            elif not file.startswith("attack"):
+                continue
+
+            else:
+                status = attack.close()
+
+        except FileNotFoundError:
+            continue
+
+    return render_template('content.html', original=c.read(), dependency=d.read(), analysis=a.read(),
+                           summary1=s.read(), function=f.read(), attack=status, filename=filename)
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
@@ -102,8 +125,6 @@ def download():
 
     return send_file(path, as_attachment=True)
 
-
-   
 
 if __name__ == '__main__':
     app.secret_key = b'_5#y2L"F4Z8z\n\xec]/'
