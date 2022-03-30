@@ -11,13 +11,12 @@
             <h1>Attack Contract</h1>
             {% set url = "?type=attack&filename=" + filename %}
 
-                {% if filename in os.listdir(abs_path) %}
-                    <a href="/download{{ url }}">Download</a>
+                {% for filename in os.listdir(abs_path) %}
+                    {% if filename.startswith("attack") %}
+                        <a href="/download{{ url }}">Download</a>
+                    {% endif %}
+                {% endfor %}
 
-                {% else %}
-                    <label></label>
-
-                {% endif %}
         </div>
     </div>
     <textarea class="textBox" id="sec1" disabled> {{ original }} </textarea>
