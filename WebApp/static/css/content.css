@@ -14,22 +14,9 @@ body {
     background-color: white;
 }
 
-#sec3,
-#sec1 {
+#sec1, #sec2, #sec3, #sec4, #sec5, #sec6 {
     width: 50%;
     height: 35%;
-}
-
-#sec4,
-#sec2 {
-    width: 50%;
-    height: 35%;
-}
-
-#sec5 {
-    width: 50%;
-    height: 35%;
-    margin-left: 25%;
 }
 
 .w3-container {

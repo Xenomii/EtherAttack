@@ -19,6 +19,10 @@ def index():
             print('Error %s : %s' % (f, e.strerror))
     return render_template("index.html")
 
+@app.context_processor
+def handle_context():
+    return dict(os=os)
+
 @app.route("/upload-file", methods=["GET", "POST"], defaults={'req_path': ''})
 @app.route("/upload-file/<path:req_path>")
 def upload_file(req_path):
@@ -65,8 +69,9 @@ def content(filename):
     size = len(filename)
     CONTRACT_DIR = "Contracts"
     abs_path = os.path.join(CONTRACT_DIR, filename[:size - 4])
+    rm_path = os.path.join(abs_path, "msg_" + filename[:size-4] + ".txt")
     status = ""
-    print(filename)
+    message = "No vulnerabilities found."
 
     c = open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
              , 'r')
@@ -80,7 +85,6 @@ def content(filename):
              , 'r')
 
     for file in os.listdir(abs_path):
-
         try:
             attack = open(f"Contracts/{filename[:size - 4]}/attack_{filename[:size - 4]}.sol"
                           , 'r')
@@ -92,9 +96,18 @@ def content(filename):
                 continue
 
             else:
-                status = attack.close()
+                attack.close()
 
         except FileNotFoundError:
+            attack = open(f"Contracts/{filename[:size - 4]}/msg_{filename[:size - 4]}.txt"
+                          , 'w+')
+            attack.write(message)
+
+            attack = open(f"Contracts/{filename[:size - 4]}/msg_{filename[:size - 4]}.txt"
+                          , 'r')
+            status = attack.read()
+
+            os.remove(rm_path)
             continue
 
     return render_template('content.html', original=c.read(), dependency=d.read(), analysis=a.read(),
@@ -121,11 +134,6 @@ def download():
         path = f"Contracts/{filename[:size - 4]}/functionsummary_{filename[:size - 4]}.txt"
 
     return send_file(path, as_attachment=True)
-
-@app.context_processor
-def handle_context():
-    return dict(os=os)
-
 
 if __name__ == '__main__':
     app.secret_key = b'_5#y2L"F4Z8z\n\xec]/'
