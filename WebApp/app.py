@@ -71,7 +71,7 @@ def content(filename):
     abs_path = os.path.join(CONTRACT_DIR, filename[:size - 4])
     rm_path = os.path.join(abs_path, "msg_" + filename[:size-4] + ".txt")
     status = ""
-    message = "No vulnerabilities found."
+    message = "No vulnerabilities detected or vulnerabilities does not fall under our approved attacks."
 
     c = open(f"Contracts/{filename[:size - 4]}/contract_{filename[:size - 4]}.sol"
              , 'r')
